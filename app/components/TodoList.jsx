@@ -2,7 +2,9 @@ var React = require('react');
 var Todo = require('Todo');
 
 var TodoList = React.createClass({
-
+    propTypes: {
+        todos: React.PropTypes.array
+    },
     render: function () {
         var {todos} = this.props;
         var renderTodos = () => {
