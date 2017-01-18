@@ -37,4 +37,24 @@ firebaseRef.child('user').update({
 
 firebaseRef.child('user/age').remove();
 
-firebaseRef.off();
+var todosRef = firebaseRef.child('todos');
+todosRef.on('child_added', (snapshot) => {
+    console.log('child_added', snapshot.key, snapshot.val());
+});
+todosRef.push({
+    text: 'todo 1',
+    completed: true
+});
+todosRef.push({
+    text: 'todo 2',
+    completed: false
+});
+
+firebaseRef.once('value', function(snapshot1) {
+    snapshot1.forEach(function(childSnapshot1) {
+        var childKey = childSnapshot1.key;
+        var childData = childSnapshot1.val();
+        console.log('DATA: ', childKey, childData);
+    });
+});
+//firebaseRef.off();

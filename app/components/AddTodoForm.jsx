@@ -8,7 +8,7 @@ export var AddTodoForm = React.createClass({
         event.preventDefault();
         var todoText = this.refs.todoText;
         if (todoText.value) {
-            dispatch(actions.addTodo(todoText.value));
+            dispatch(actions.startAddTodo(todoText.value));
             todoText.value = '';
         } else {
             todoText.focus();
